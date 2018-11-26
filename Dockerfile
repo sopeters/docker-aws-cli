@@ -7,8 +7,7 @@ ARG JP_VERSION
 ENV JP_VERSION=${JP_VERSION}
 
 RUN apk -v --no-cache --update add \
-        python \
-        py-pip \
+        python3 \
         ca-certificates \
         groff \
         less \
@@ -21,9 +20,10 @@ RUN apk -v --no-cache --update add \
         openssh-client \
         rsync \
         && \
-    pip install --no-cache-dir --upgrade awscli==$AWS_CLI_VERSION && \
-    update-ca-certificates && \
-    apk -v --purge del py-pip
+    pip3 install --upgrade pip && \
+    pip3 install --no-cache-dir --upgrade awscli==$AWS_CLI_VERSION && \
+    update-ca-certificates 
+
 RUN curl -o /usr/local/bin/jp -L https://github.com/jmespath/jp/releases/download/$JP_VERSION/jp-linux-amd64 && \
     chmod +x /usr/local/bin/jp
 

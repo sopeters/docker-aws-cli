@@ -1,11 +1,11 @@
 AWS_CLI_VERSION = 1.16.55
 JP_VERSION=0.1.3
 
-IMAGE_NAME ?= contino/aws-cli:$(AWS_CLI_VERSION)
+IMAGE_NAME ?= xmission/aws-cli:$(AWS_CLI_VERSION)
 TAG = $(AWS_CLI_VERSION)
 
 build:
-	docker build --build-arg AWS_CLI_VERSION=$(AWS_CLI_VERSION) --build-argJP_VERSION=$(JP_VERSION)  -t $(IMAGE_NAME) .
+	docker build --build-arg AWS_CLI_VERSION=$(AWS_CLI_VERSION) --build-arg JP_VERSION=$(JP_VERSION)  -t $(IMAGE_NAME) .
 
 test:
 	docker run --rm -it $(IMAGE_NAME) aws --version
